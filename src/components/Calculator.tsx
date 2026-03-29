@@ -5,11 +5,15 @@ import { trackToolUse } from "@/lib/analytics";
 import { calculateIotElectricity } from "@/lib/calculators/iot-electricity";
 import { calculateEdgeAiRoi } from "@/lib/calculators/edge-ai-roi";
 import { calculateCloudVsEdge } from "@/lib/calculators/cloud-vs-edge";
+import { calculateSensorPower } from "@/lib/calculators/sensor-power-calculator";
+import { calculateAiInferenceCost } from "@/lib/calculators/ai-inference-cost-calculator";
 
 const calculators: Record<string, (values: Record<string, number | string>) => Record<string, string | number>> = {
   "iot-electricity-calculator": calculateIotElectricity,
   "edge-ai-roi-calculator": calculateEdgeAiRoi,
   "cloud-vs-edge-calculator": calculateCloudVsEdge,
+  "sensor-power-calculator": calculateSensorPower,
+  "ai-inference-cost-calculator": calculateAiInferenceCost,
 };
 
 interface ToolInput {

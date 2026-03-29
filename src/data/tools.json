@@ -90,5 +90,83 @@
       { "q": "エッジデバイスのメンテナンスコストは含まれていますか？", "a": "このツールでは電気代のみを月額費用として計算しています。実際にはソフトウェア更新や故障対応のコストも加算することをお勧めします。" },
       { "q": "クラウドとエッジのハイブリッド構成は有効ですか？", "a": "軽量な推論はエッジで、重い処理はクラウドで処理するハイブリッド構成は、コストとパフォーマンスのバランスを最適化できる有力な選択肢です。" }
     ]
+  },
+  {
+    "slug": "sensor-power-calculator",
+    "title": "IoTセンサー電力消費計算機",
+    "description": "センサー種類・サンプリング間隔・動作モード・台数から消費電力、月間電力量、バッテリー持続時間を自動計算。設計前の省電力試算に。",
+    "category": "IoT設計",
+    "icon": "Radio",
+    "inputs": [
+      {
+        "id": "sensorType",
+        "label": "センサー種類",
+        "type": "select",
+        "default": "温度センサー",
+        "options": ["温度センサー", "湿度センサー", "加速度センサー", "CO2センサー", "GPSセンサー", "カメラモジュール"]
+      },
+      {
+        "id": "mode",
+        "label": "動作モード",
+        "type": "select",
+        "default": "間欠稼働",
+        "options": ["常時稼働", "間欠稼働"]
+      },
+      { "id": "samplingInterval", "label": "サンプリング間隔", "type": "number", "unit": "秒", "default": 60 },
+      { "id": "devices", "label": "台数", "type": "number", "unit": "台", "default": 10 }
+    ],
+    "outputs": [
+      { "id": "powerPerDevice", "label": "1台あたり消費電力" },
+      { "id": "monthlyKwh", "label": "月間消費電力量（全台）" },
+      { "id": "batteryDays", "label": "バッテリー持続目安（2000mAh）" }
+    ],
+    "relatedProducts": [
+      { "asin": "B09KVB8LH2", "title": "Raspberry Pi Pico W（Wi-Fi対応マイコン）" },
+      { "asin": "B08D5ZD528", "title": "ESP32開発ボード（IoTセンサーノード用）" }
+    ],
+    "faq": [
+      { "q": "間欠稼働と常時稼働でどのくらい消費電力が変わりますか？", "a": "センサーの種類にもよりますが、60秒間隔の間欠稼働では常時稼働比で1/100〜1/1000程度まで消費電力を削減できます。特にCO2センサーやGPSセンサーで効果が大きく出ます。※本ツールの結果は参考値です。実機での実測をお勧めします。" },
+      { "q": "電池はどれくらい持ちますか？", "a": "一般的な単三電池（アルカリ）のエネルギー容量は約3,000〜3,500mAhです。温度センサーを60秒間隔の間欠稼働で使えば、数年単位のバッテリー寿命が期待できます。ただし自己放電や温度環境も影響します。" },
+      { "q": "消費電力を下げるにはどうすればよいですか？", "a": "①サンプリング間隔を長くする、②通信プロトコルをBLEやLoRaWANなど低消費電力のものを選ぶ、③センサー自体のパワーダウンモードを活用する、の3点が主な手法です。" }
+    ]
+  },
+  {
+    "slug": "ai-inference-cost-calculator",
+    "title": "AI推論コスト計算機",
+    "description": "モデルサイズ・推論リクエスト数・デバイス種別から月額・年間の推論コストとレイテンシ目安を算出。クラウドvsエッジの費用判断に。",
+    "category": "AI運用",
+    "icon": "Cpu",
+    "inputs": [
+      {
+        "id": "modelSize",
+        "label": "モデルサイズ",
+        "type": "select",
+        "default": "小型モデル(<100Mパラメータ)",
+        "options": ["小型モデル(<100Mパラメータ)", "中型モデル(100M〜1Bパラメータ)", "大型モデル(>1Bパラメータ)"]
+      },
+      { "id": "requestsPerDay", "label": "推論リクエスト数", "type": "number", "unit": "回/日", "default": 1000 },
+      {
+        "id": "device",
+        "label": "実行デバイス",
+        "type": "select",
+        "default": "クラウドGPU",
+        "options": ["クラウドGPU", "エッジGPU(Jetson Orin Nano)", "Raspberry Pi"]
+      }
+    ],
+    "outputs": [
+      { "id": "monthlyCost", "label": "月額推論コスト", "unit": "円" },
+      { "id": "yearlyCost", "label": "年間コスト", "unit": "円" },
+      { "id": "latencyMs", "label": "レイテンシ目安" },
+      { "id": "costPer1000", "label": "1,000回あたりコスト" }
+    ],
+    "relatedProducts": [
+      { "asin": "B0BCNKKD9K", "title": "NVIDIA Jetson Orin Nano 開発者キット" },
+      { "asin": "B0CXKPHLLX", "title": "Google Coral USB Accelerator（Edge TPU）" }
+    ],
+    "faq": [
+      { "q": "クラウドAIとエッジAI、どちらがコスト効率がよいですか？", "a": "推論回数が多いほどエッジが有利です。月間1万回以上かつAPI単価が0.5円/回以上の場合、エッジデバイス（Jetson Orin Nano等）は概ね1〜2年で初期費用を回収できます。※本ツールの結果は参考値です。" },
+      { "q": "モデルの量子化はコストに影響しますか？", "a": "INT8量子化を適用すると推論速度が2〜4倍向上し、エッジデバイスでも大型モデルが扱いやすくなります。TensorFlow LiteやONNX Runtimeの量子化ツールを活用してください。" },
+      { "q": "Raspberry Piで大型モデルは動きますか？", "a": "1Bパラメータ超の大型モデルはRaspberry Piではレイテンシが10秒以上になり、実用的ではありません。Jetson Orin NanoやCoral Edge TPUの使用を推奨します。" }
+    ]
   }
 ]
