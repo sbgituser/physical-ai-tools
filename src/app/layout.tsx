@@ -5,15 +5,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { websiteSchema } from "@/lib/jsonld";
+import { buildMetadata } from "@/lib/seo";
 import { siteConfig, themeColors } from "@/data/site-config";
 
 const notoSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: ["400", "700"] });
 
-export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: siteConfig.description,
-  metadataBase: new URL(siteConfig.url),
-};
+export const metadata: Metadata = buildMetadata({
+  ogImage: "/ogp/default-ogp.png",
+});
 
 export default function RootLayout({
   children,
