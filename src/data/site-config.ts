@@ -1,11 +1,11 @@
 export const siteConfig = {
-  name: "サイト名",
-  description: "サイトの説明文",
-  domain: "xxx.kuras-plus.com",
-  url: "https://xxx.kuras-plus.com",
+  name: "フィジカルAI・IoTツール",
+  description: "フィジカルAI・IoT・エッジAIの導入コスト計算、電気代シミュレーション、ROI分析ツール集",
+  domain: "physical-ai-tools.kuras-plus.com",
+  url: "https://physical-ai-tools.kuras-plus.com",
   theme: "blue" as const,
   amazonTag: "kurasplus-22",
-  ga4Id: "G-XXXXXXXXXX",
+  ga4Id: "",
   ogImage: "/images/og-default.png",
   twitterHandle: "",
   nav: [

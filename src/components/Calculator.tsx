@@ -2,12 +2,14 @@
 
 import { useState, useCallback } from "react";
 import { trackToolUse } from "@/lib/analytics";
-import { calculateBmi } from "@/lib/calculators/bmi";
-import { calculateCalorie } from "@/lib/calculators/calorie";
+import { calculateIotElectricity } from "@/lib/calculators/iot-electricity";
+import { calculateEdgeAiRoi } from "@/lib/calculators/edge-ai-roi";
+import { calculateCloudVsEdge } from "@/lib/calculators/cloud-vs-edge";
 
 const calculators: Record<string, (values: Record<string, number | string>) => Record<string, string | number>> = {
-  "bmi-calculator": calculateBmi,
-  "calorie-calculator": calculateCalorie,
+  "iot-electricity-calculator": calculateIotElectricity,
+  "edge-ai-roi-calculator": calculateEdgeAiRoi,
+  "cloud-vs-edge-calculator": calculateCloudVsEdge,
 };
 
 interface ToolInput {

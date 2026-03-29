@@ -1,50 +1,94 @@
 [
   {
-    "slug": "bmi-calculator",
-    "title": "BMI計算ツール",
-    "description": "身長と体重を入力してBMIを瞬時に計算。肥満度や標準体重もわかります。",
-    "category": "健康・フィットネス",
-    "icon": "Calculator",
+    "slug": "iot-electricity-calculator",
+    "title": "IoTデバイス電気代シミュレーター",
+    "description": "IoTデバイスの消費電力・稼働時間・台数から月間・年間の電気代を計算。導入前のコスト見積もりに。",
+    "category": "IoT・コスト計算",
+    "icon": "Zap",
     "inputs": [
-      { "id": "height", "label": "身長", "type": "number", "unit": "cm", "default": 170 },
-      { "id": "weight", "label": "体重", "type": "number", "unit": "kg", "default": 65 }
+      { "id": "watt", "label": "消費電力", "type": "number", "unit": "W", "default": 5 },
+      { "id": "hours", "label": "稼働時間", "type": "number", "unit": "時間/日", "default": 24 },
+      { "id": "devices", "label": "台数", "type": "number", "unit": "台", "default": 10 },
+      { "id": "rate", "label": "電気料金単価", "type": "number", "unit": "円/kWh", "default": 31 }
     ],
     "outputs": [
-      { "id": "bmi", "label": "BMI", "unit": "" },
-      { "id": "category", "label": "判定", "unit": "" },
-      { "id": "standardWeight", "label": "標準体重", "unit": "kg" }
+      { "id": "monthlyKwh", "label": "月間消費電力量", "unit": "kWh" },
+      { "id": "monthlyCost", "label": "月間電気代", "unit": "円" },
+      { "id": "yearlyCost", "label": "年間電気代", "unit": "円" },
+      { "id": "tenYearCost", "label": "10年間コスト", "unit": "円" }
     ],
     "relatedProducts": [
-      { "asin": "B08XYZ1234", "title": "体組成計 スマート体重計" }
+      { "asin": "B09BDZTYRZ", "title": "スマートプラグ（消費電力モニタリング機能付き）" },
+      { "asin": "B07YVLH54F", "title": "ワットモニター 電力計 コンセント型" }
     ],
     "faq": [
-      { "q": "BMIとは何ですか？", "a": "BMI（Body Mass Index）は体重と身長から算出される肥満度の指標です。" },
-      { "q": "BMI 22が標準体重の理由は？", "a": "統計的に最も疾病リスクが低いBMI値として22が設定されています。" }
+      { "q": "IoTデバイスの電気代はどのくらいかかりますか？", "a": "一般的なIoTセンサー（5W程度）を10台24時間稼働させた場合、月間約1,100円程度の電気代がかかります。デバイスの種類や稼働時間によって大きく異なります。" },
+      { "q": "電気料金単価の目安はいくらですか？", "a": "2024年現在、日本の一般家庭・事業者向け電気料金は概ね25〜35円/kWhが目安です。電力会社や契約プランにより異なります。" },
+      { "q": "スタンバイ電力も考慮すべきですか？", "a": "IoTデバイスは常時接続が多いため、稼働時間は24時間で計算することを推奨します。スリープモードがある場合は実測値を入力してください。" },
+      { "q": "大量のIoTデバイスを導入する際の注意点は？", "a": "100台以上の導入では、電気代だけでなく電源設備の容量確認も必要です。業務用電力契約への切り替えでコストを下げられる場合があります。" }
     ]
   },
   {
-    "slug": "calorie-calculator",
-    "title": "カロリー計算ツール",
-    "description": "年齢・性別・活動量から1日の必要カロリーを計算します。ダイエット・筋トレに。",
-    "category": "健康・フィットネス",
-    "icon": "Fire",
+    "slug": "edge-ai-roi-calculator",
+    "title": "エッジAIデバイス導入ROI計算機",
+    "description": "エッジAIデバイスの初期費用と月間コスト削減額から投資回収期間・ROIを算出。導入判断の参考に。",
+    "category": "エッジAI・ROI",
+    "icon": "TrendingUp",
     "inputs": [
-      { "id": "age", "label": "年齢", "type": "number", "unit": "歳", "default": 30 },
-      { "id": "gender", "label": "性別", "type": "select", "options": ["男性", "女性"], "default": "男性" },
-      { "id": "height", "label": "身長", "type": "number", "unit": "cm", "default": 170 },
-      { "id": "weight", "label": "体重", "type": "number", "unit": "kg", "default": 65 },
-      { "id": "activity", "label": "活動レベル", "type": "select", "options": ["低い（座り仕事）", "普通（軽い運動）", "高い（激しい運動）"], "default": "普通（軽い運動）" }
+      { "id": "initialCost", "label": "デバイス初期費用（1台）", "type": "number", "unit": "円", "default": 15000 },
+      { "id": "devices", "label": "導入台数", "type": "number", "unit": "台", "default": 5 },
+      { "id": "commSaving", "label": "月間通信費削減額", "type": "number", "unit": "円/月", "default": 3000 },
+      { "id": "apiSaving", "label": "クラウドAPI費用削減額", "type": "number", "unit": "円/月", "default": 5000 }
     ],
     "outputs": [
-      { "id": "bmr", "label": "基礎代謝量", "unit": "kcal/日" },
-      { "id": "tdee", "label": "1日の必要カロリー", "unit": "kcal/日" }
+      { "id": "totalInitial", "label": "総初期費用", "unit": "円" },
+      { "id": "monthlySaving", "label": "月間総コスト削減額", "unit": "円" },
+      { "id": "paybackMonths", "label": "投資回収期間", "unit": "ヶ月" },
+      { "id": "roi3year", "label": "3年間ROI", "unit": "%" },
+      { "id": "saving3year", "label": "3年間累積削減額", "unit": "円" }
     ],
     "relatedProducts": [
-      { "asin": "B09ABC5678", "title": "カロリー管理アプリ対応スマートウォッチ" }
+      { "asin": "B0B4VZ4N9W", "title": "Raspberry Pi 4 Model B 4GB" },
+      { "asin": "B08J157LHH", "title": "NVIDIA Jetson Nano 開発者キット" },
+      { "asin": "B07PXGQC1Q", "title": "Grove センサーキット IoT開発用" }
     ],
     "faq": [
-      { "q": "基礎代謝とは何ですか？", "a": "生命維持に最低限必要なエネルギー量です。呼吸や体温調節などに使われます。" },
-      { "q": "このカロリーより少なく食べれば痩せますか？", "a": "必要カロリーより少ない摂取量を維持することで体重が減少します。ただし極端な制限は避けましょう。" }
+      { "q": "エッジAIの導入でどのくらいコスト削減できますか？", "a": "クラウドAPIへの依存度を下げることで、月間数千円〜数万円のAPI費用削減が期待できます。また、通信量削減により通信費も下げられます。実際の削減額はユースケースによります。" },
+      { "q": "Raspberry PiとJetson Nanoはどちらが向いていますか？", "a": "画像認識などの重い推論処理にはJetson Nanoが有利です。軽量なデータ収集・簡単な推論はRaspberry Piで十分です。詳しくは比較記事をご参照ください。" },
+      { "q": "ROIの計算に含めるべき隠れコストは？", "a": "ハードウェア保守費、OS・ソフトウェアのアップデート工数、設置・配線コスト、故障時の交換費用なども考慮してください。" },
+      { "q": "エッジAI導入に向いている業種・用途は？", "a": "製造ライン検査、農業センシング、スマートビル管理、小売の来店分析など、リアルタイム処理や通信コスト削減が重要な用途に特に適しています。" }
+    ]
+  },
+  {
+    "slug": "cloud-vs-edge-calculator",
+    "title": "クラウドvsエッジ コスト比較ツール",
+    "description": "クラウドAIとエッジAIのコストを比較。推論回数・API費用・設備費から損益分岐点と3年間総コストを算出。",
+    "category": "コスト比較",
+    "icon": "BarChart2",
+    "inputs": [
+      { "id": "inferences", "label": "月間推論回数", "type": "number", "unit": "回/月", "default": 10000 },
+      { "id": "apiCostPer", "label": "1回あたりのクラウドAPI費用", "type": "number", "unit": "円/回", "default": 0.5 },
+      { "id": "edgeInitial", "label": "エッジデバイス初期費用", "type": "number", "unit": "円", "default": 30000 },
+      { "id": "edgeElectricity", "label": "エッジデバイス月間電気代", "type": "number", "unit": "円/月", "default": 500 }
+    ],
+    "outputs": [
+      { "id": "cloudMonthly", "label": "クラウド月額費用", "unit": "円" },
+      { "id": "edgeMonthly", "label": "エッジ月額費用（電気代のみ）", "unit": "円" },
+      { "id": "breakEvenMonths", "label": "損益分岐点", "unit": "ヶ月" },
+      { "id": "cloudTotal3y", "label": "クラウド3年間総コスト", "unit": "円" },
+      { "id": "edgeTotal3y", "label": "エッジ3年間総コスト", "unit": "円" },
+      { "id": "saving3y", "label": "3年間コスト差額（エッジ有利）", "unit": "円" }
+    ],
+    "relatedProducts": [
+      { "asin": "B0CXKPHLLX", "title": "エッジAI開発キット Coral USB Accelerator" },
+      { "asin": "B07VRK88K9", "title": "Intel Neural Compute Stick 2" },
+      { "asin": "B0B4VZ4N9W", "title": "Raspberry Pi 4 Model B 4GB" }
+    ],
+    "faq": [
+      { "q": "クラウドとエッジ、どちらが得になりますか？", "a": "推論回数が多いほどエッジが有利になります。月間1万回以上の推論があり、APIコストが0.5円/回であれば、多くのケースで2〜3年以内に損益分岐点を迎えます。" },
+      { "q": "クラウドAIのAPI費用の相場はどのくらいですか？", "a": "画像認識APIは0.1〜2円/回、音声認識は0.5〜3円/回が目安です。サービス・ベンダーにより大きく異なります。" },
+      { "q": "エッジデバイスのメンテナンスコストは含まれていますか？", "a": "このツールでは電気代のみを月額費用として計算しています。実際にはソフトウェア更新や故障対応のコストも加算することをお勧めします。" },
+      { "q": "クラウドとエッジのハイブリッド構成は有効ですか？", "a": "軽量な推論はエッジで、重い処理はクラウドで処理するハイブリッド構成は、コストとパフォーマンスのバランスを最適化できる有力な選択肢です。" }
     ]
   }
 ]
