@@ -5,7 +5,7 @@ export const siteConfig = {
   url: "https://physical-ai-tools.kuras-plus.com",
   theme: "blue" as const,
   amazonTag: "kurasplus-22",
-  ga4Id: "",
+  ga4Id: "G-V0FWX12Z87",
   ogImage: "/images/og-default.png",
   twitterHandle: "",
   nav: [
