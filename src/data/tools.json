@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "bmi-calculator",
+    "title": "BMI計算ツール",
+    "description": "身長と体重を入力してBMIを瞬時に計算。肥満度や標準体重もわかります。",
+    "category": "健康・フィットネス",
+    "icon": "Calculator",
+    "inputs": [
+      { "id": "height", "label": "身長", "type": "number", "unit": "cm", "default": 170 },
+      { "id": "weight", "label": "体重", "type": "number", "unit": "kg", "default": 65 }
+    ],
+    "outputs": [
+      { "id": "bmi", "label": "BMI", "unit": "" },
+      { "id": "category", "label": "判定", "unit": "" },
+      { "id": "standardWeight", "label": "標準体重", "unit": "kg" }
+    ],
+    "relatedProducts": [
+      { "asin": "B08XYZ1234", "title": "体組成計 スマート体重計" }
+    ],
+    "faq": [
+      { "q": "BMIとは何ですか？", "a": "BMI（Body Mass Index）は体重と身長から算出される肥満度の指標です。" },
+      { "q": "BMI 22が標準体重の理由は？", "a": "統計的に最も疾病リスクが低いBMI値として22が設定されています。" }
+    ]
+  },
+  {
+    "slug": "calorie-calculator",
+    "title": "カロリー計算ツール",
+    "description": "年齢・性別・活動量から1日の必要カロリーを計算します。ダイエット・筋トレに。",
+    "category": "健康・フィットネス",
+    "icon": "Fire",
+    "inputs": [
+      { "id": "age", "label": "年齢", "type": "number", "unit": "歳", "default": 30 },
+      { "id": "gender", "label": "性別", "type": "select", "options": ["男性", "女性"], "default": "男性" },
+      { "id": "height", "label": "身長", "type": "number", "unit": "cm", "default": 170 },
+      { "id": "weight", "label": "体重", "type": "number", "unit": "kg", "default": 65 },
+      { "id": "activity", "label": "活動レベル", "type": "select", "options": ["低い（座り仕事）", "普通（軽い運動）", "高い（激しい運動）"], "default": "普通（軽い運動）" }
+    ],
+    "outputs": [
+      { "id": "bmr", "label": "基礎代謝量", "unit": "kcal/日" },
+      { "id": "tdee", "label": "1日の必要カロリー", "unit": "kcal/日" }
+    ],
+    "relatedProducts": [
+      { "asin": "B09ABC5678", "title": "カロリー管理アプリ対応スマートウォッチ" }
+    ],
+    "faq": [
+      { "q": "基礎代謝とは何ですか？", "a": "生命維持に最低限必要なエネルギー量です。呼吸や体温調節などに使われます。" },
+      { "q": "このカロリーより少なく食べれば痩せますか？", "a": "必要カロリーより少ない摂取量を維持することで体重が減少します。ただし極端な制限は避けましょう。" }
+    ]
+  }
+]
