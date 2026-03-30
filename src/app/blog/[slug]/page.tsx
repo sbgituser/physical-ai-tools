@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
 import ToolCard from "@/components/ToolCard";
 import JsonLd from "@/components/JsonLd";
-import { articleSchema } from "@/lib/jsonld";
+import { articleSchema, faqSchema } from "@/lib/jsonld";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/data/site-config";
 import articlesData from "@/data/articles.json";
@@ -30,6 +30,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
   const article = articlesData.find((a) => a.slug === slug);
   if (!article) notFound();
 
+  const articleData = article as typeof article & { faq?: { q: string; a: string }[] };
   const relatedTools = toolsData.filter((t) => article.relatedTools?.includes(t.slug));
   const schema = articleSchema({
     title: article.title,
@@ -43,6 +44,9 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
     <div className="max-w-3xl mx-auto px-4 py-8">
       <Breadcrumb items={[{ name: "ブログ", href: "/blog" }, { name: article.title, href: `/blog/${article.slug}` }]} />
       <JsonLd data={schema} />
+      {articleData.faq && articleData.faq.length > 0 && (
+        <JsonLd data={faqSchema(articleData.faq)} />
+      )}
 
       <span className="text-sm text-[var(--color-primary)] font-medium mt-4 block">{article.category}</span>
       <h1 className="text-2xl md:text-3xl font-bold mt-2 mb-2">{article.title}</h1>
