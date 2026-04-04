@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
 import ToolCard from "@/components/ToolCard";
+import BlogCard from "@/components/BlogCard";
 import JsonLd from "@/components/JsonLd";
 import { articleSchema, faqSchema } from "@/lib/jsonld";
 import { buildMetadata } from "@/lib/seo";
@@ -25,6 +26,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   });
 }
 
+function getRelatedArticles(current: (typeof articlesData)[number]) {
+  return articlesData
+    .filter((a) => a.slug !== current.slug)
+    .map((a) => {
+      let score = 0;
+      if (a.category === current.category) score += 2;
+      const currentTools = current.relatedTools ?? [];
+      const aTools = a.relatedTools ?? [];
+      score += currentTools.filter((t) => aTools.includes(t)).length;
+      return { article: a, score };
+    })
+    .filter((r) => r.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map((r) => r.article);
+}
+
 export default async function BlogArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const article = articlesData.find((a) => a.slug === slug);
@@ -32,6 +50,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
 
   const articleData = article as typeof article & { faq?: { q: string; a: string }[] };
   const relatedTools = toolsData.filter((t) => article.relatedTools?.includes(t.slug));
+  const relatedArticles = getRelatedArticles(article);
   const schema = articleSchema({
     title: article.title,
     description: article.description,
@@ -76,6 +95,17 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
           <div className="space-y-3">
             {relatedTools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {relatedArticles.length > 0 && (
+        <section className="mt-12">
+          <h2 className="text-xl font-bold mb-4">関連記事</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {relatedArticles.map((a) => (
+              <BlogCard key={a.slug} article={a} />
             ))}
           </div>
         </section>

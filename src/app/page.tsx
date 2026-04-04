@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ToolCard from "@/components/ToolCard";
 import BlogCard from "@/components/BlogCard";
 import { siteConfig } from "@/data/site-config";
@@ -32,10 +33,20 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4 pb-12">
         <h2 className="text-2xl font-bold mb-6">最新記事</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {articlesData.slice(0, 3).map((article) => (
+          {articlesData.slice(0, 6).map((article) => (
             <BlogCard key={article.slug} article={article} />
           ))}
         </div>
+        {articlesData.length > 6 && (
+          <div className="mt-6 text-center">
+            <Link
+              href="/blog"
+              className="inline-block px-6 py-2 bg-[var(--color-primary)] text-white rounded-lg hover:opacity-90 transition-opacity"
+            >
+              記事をもっと見る
+            </Link>
+          </div>
+        )}
       </section>
     </>
   );

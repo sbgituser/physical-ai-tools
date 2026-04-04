@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
-import { websiteSchema } from "@/lib/jsonld";
+import { websiteSchema, organizationSchema } from "@/lib/jsonld";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig, themeColors } from "@/data/site-config";
 
@@ -50,6 +50,7 @@ export default function RootLayout({
           }
         `}</style>
         <JsonLd data={websiteSchema()} />
+        <JsonLd data={organizationSchema()} />
       </head>
       <body className={`${notoSansJP.className} bg-gray-50 min-h-screen flex flex-col`}>
         <Header />

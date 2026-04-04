@@ -5,7 +5,7 @@ import AmazonLink from "@/components/AmazonLink";
 import BlogCard from "@/components/BlogCard";
 import JsonLd from "@/components/JsonLd";
 import Calculator from "@/components/Calculator";
-import { howToSchema, webApplicationSchema } from "@/lib/jsonld";
+import { howToSchema, webApplicationSchema, faqSchema } from "@/lib/jsonld";
 import { buildMetadata } from "@/lib/seo";
 import toolsData from "@/data/tools.json";
 import articlesData from "@/data/articles.json";
@@ -44,6 +44,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
 
       <JsonLd data={howToSchema(tool)} />
       <JsonLd data={webApplicationSchema({ title: tool.title, description: tool.description, slug: tool.slug })} />
+      {tool.faq && tool.faq.length > 0 && <JsonLd data={faqSchema(tool.faq)} />}
 
       <h1 className="text-2xl md:text-3xl font-bold mt-4 mb-2">{tool.title}</h1>
       <p className="text-gray-500 mb-8">{tool.description}</p>
