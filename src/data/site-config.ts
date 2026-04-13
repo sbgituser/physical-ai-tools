@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: "フィジカルAI・IoTツール",
-  description: "フィジカルAI・IoT・エッジAIの導入コスト計算、電気代シミュレーション、ROI分析ツール集",
+  name: "フィジカルAI・産業用ロボット導入ガイド",
+  description: "フィジカルAI・産業用ロボット・エッジAIの導入コスト計算、ROI分析、工場自動化シミュレーションツール集。製造業・物流のAI活用事例も紹介",
   domain: "physical-ai-tools.kuras-plus.com",
   url: "https://physical-ai-tools.kuras-plus.com",
   theme: "blue" as const,
@@ -10,6 +10,8 @@ export const siteConfig = {
   twitterHandle: "",
   nav: [
     { label: "ツール", href: "/tools" },
+    { label: "デバイスDB", href: "/tools/device-database" },
+    { label: "導入事例", href: "/tools/case-studies" },
     { label: "ブログ", href: "/blog" },
   ],
 };
